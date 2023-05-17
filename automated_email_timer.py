@@ -2,6 +2,8 @@ import smtplib
 from email.message import EmailMessage 
 import ssl
 import time
+
+# Email content
 name = "sender_name"
 address_sender = 'your_sender_email'
 password_sender =  'your_sender_password'
@@ -22,6 +24,7 @@ context = ssl.create_default_context()
 
 
 def perform_task():
+ #Connect to the SMTP server
 
 
  with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as mysmtp:
