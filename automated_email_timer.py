@@ -2,15 +2,16 @@ import smtplib
 from email.message import EmailMessage 
 import ssl
 import time
+import datetime
 
-# Email content
-name = "sender_name"
-address_sender = 'your_sender_email'
-password_sender =  'your_sender_password'
-input_address_recipients = 'recipient_email'
-address_recipients = input_address_recipients.split(',')
-subject = 'Automatic Email'
-body =  'This is an automatic email sent every 10 minutes.'
+name = input('Enter your name: ')
+address_sender = input('Enter the email address of the sender: ')
+password_sender = input('Enter the email password: ')
+input_address_recipients = input('Enter the address of all recipients: ')
+address_recipients = list((input_address_recipients))
+subject = input('Enter the subject of the mail: ')
+body = input('Enter the body of the mail: ')
+mail_time = datetime.datetime.now()
 
 email_msg = EmailMessage()
 
@@ -24,13 +25,12 @@ context = ssl.create_default_context()
 
 
 def perform_task():
- #Connect to the SMTP server
 
 
  with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as mysmtp:
     mysmtp.login(address_sender,password_sender)
     mysmtp.sendmail(address_sender,input_address_recipients, email_msg.as_string())
-    print('Hi your message has been sent successfully')
+    print('Hi your message has been sent successfully at:', mail_time)
         
 
        #send mail every 10 minutes
